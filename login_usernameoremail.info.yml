@@ -1,0 +1,4 @@
+name: Login form email or password
+type: module
+description: 'Allow users to log in with either their email OR password using the same input box on the login form.'
+core: 8.x
