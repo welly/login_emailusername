@@ -11,7 +11,7 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-This very simple module allows user to log in with either their username OR
+This very simple module allows users to log in with either their username OR
 email address from the same input box on the standard login form.
 
 

@@ -5,15 +5,12 @@
  * Allows users to login with their username or email address in the same input box.
  */
 
-use Drupal\Component\Utility\Unicode;
-use Drupal\user\UserInterface;
-use Drupal\Core\Render\Element\Email;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function login_emailorpassword_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+function login_usernameoremail_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
   $form['name']['#title'] = t('Username or email address.');
   $form['name']['#description'] = t('Enter your username or email address');
   $form['name']['#element_validate'][] = 'login_emailorpassword_user_login_validate';
@@ -24,20 +21,20 @@ function login_emailorpassword_form_user_login_form_alter(&$form, FormStateInter
  *
  * Allows users to authenticate by username OR email.
  */
-function login_emailorpassword_user_login_validate($form, FormStateInterface $form_state) {
+function login_usernameoremail_user_login_validate($form, FormStateInterface $form_state) {
   $name_input = $form_state->getValue('name');
 
-  // Try and load by username.
+  // Try loading by username.
   if ($user = user_load_by_name($name_input)) {
-    return true;
+    return TRUE;
   }
 
-  // try userloadbymail
+  // Try loading by email.
   if ($user = user_load_by_mail($name_input)) {
     // set the username for further validation.
     $form_state->setValue('name', $user->getAccountName());
-    return true;
+    return TRUE;
   }
 
-  return false;
+  return FALSE;
 }
