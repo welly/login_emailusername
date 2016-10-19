@@ -31,7 +31,7 @@ function login_usernameoremail_user_login_validate($form, FormStateInterface $fo
 
   // Try loading by email.
   if ($user = user_load_by_mail($name_input)) {
-    // set the username for further validation.
+    // Set the username for further validation.
     $form_state->setValue('name', $user->getAccountName());
     return TRUE;
   }
