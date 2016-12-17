@@ -10,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function login_usernameoremail_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+function login_emailusername_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
   $form['name']['#title'] = t('Username or email address.');
   $form['name']['#description'] = t('Enter your username or email address');
   $form['name']['#element_validate'][] = 'login_usernameoremail_user_login_validate';
@@ -21,7 +21,7 @@ function login_usernameoremail_form_user_login_form_alter(&$form, FormStateInter
  *
  * Allows users to authenticate by username OR email.
  */
-function login_usernameoremail_user_login_validate($form, FormStateInterface $form_state) {
+function login_emailusername_user_login_validate($form, FormStateInterface $form_state) {
   $name_input = $form_state->getValue('name');
 
   // Try loading by username.
