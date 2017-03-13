@@ -14,6 +14,9 @@ INTRODUCTION
 This very simple module allows users to log in with either their username OR
 email address from the same input box on the standard login form.
 
+Note, the system checks a matching email address BEFORE checking a matching
+username (email takes priority).
+
 
 REQUIREMENTS
 ------------
