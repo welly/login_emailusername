@@ -7,11 +7,22 @@
 
 /**
  * Implements hook_form_FORM_ID_alter().
+ *
+ * Alters the main user login form.
  */
 function login_emailusername_form_user_login_alter(&$form, &$form_state, $form_id) {
+  $form['name']['#title'] = t('Username or email address');
+  $form['name']['#description'] = t('Enter your username or email address.');
+  $form['name']['#element_validate'][] = 'login_emailusername_user_login_validate';
+}
 
-  $form['name']['#title'] = t('Username or email address.');
-  $form['name']['#description'] = t('Enter your username or email address');
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alters the user login block form.
+ */
+function login_emailusername_form_user_login_block_alter(&$form, &$form_state, $form_id) {
+  $form['name']['#title'] = t('Username or email');
   $form['name']['#element_validate'][] = 'login_emailusername_user_login_validate';
 }
 
