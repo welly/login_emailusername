@@ -8,12 +8,14 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_form_alter().
  */
-function login_emailusername_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
-  $form['name']['#title'] = t('Username or email address.');
-  $form['name']['#description'] = t('Enter your username or email address');
-  $form['name']['#element_validate'][] = 'login_emailusername_user_login_validate';
+function login_emailusername_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'user_login_form' || $form_id === 'fancy_login_user_login_form') {
+    $form['name']['#title'] = t('Username or email address.');
+    $form['name']['#description'] = t('Enter your username or email address');
+    $form['name']['#element_validate'][] = 'login_emailusername_user_login_validate';
+  }
 }
 
 /**
